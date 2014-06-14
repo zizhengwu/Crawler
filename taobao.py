@@ -6,13 +6,20 @@ import re
 
 class Taobao():
     def main(self, url="http://s.taobao.com/search?q=鼠标"):
+        names = []
+        links = []
+        prices = []
+        data = []
         page = urllib2.urlopen(url)
         soup = BeautifulSoup(page)
         for i in soup.select("h3 a"):
-            print i["href"]
-            print i["title"]
+            links.append(i["href"])
+            names.append(i["title"])
         for i in soup.find_all("div", "price"):
-            print i.get_text().strip()
-
+            prices.append(i.get_text().strip())
+        data.append(names)
+        data.append(links)
+        data.append(prices)
+        print 'JSON:', json.dumps(data)
 taobao = Taobao()
 taobao.main()
