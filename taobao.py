@@ -1,4 +1,7 @@
+#!C:/Python27/python
 #-*-coding:utf-8-*-
+from os import *  
+from cgi import *
 from bs4 import BeautifulSoup
 import urllib2
 import json
@@ -20,6 +23,7 @@ class Taobao():
         data.append(names)
         data.append(links)
         data.append(prices)
-        print 'JSON:', json.dumps(data)
+        print "Content-type: application/json\n"
+        print json.dumps(data)
 taobao = Taobao()
 taobao.main()
